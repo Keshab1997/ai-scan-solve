@@ -4,6 +4,9 @@ on:
   push:
     branches: [master]
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -16,15 +19,16 @@ jobs:
         with:
           flutter-version: '3.27.6'
           channel: 'stable'
+          cache: true
 
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build web (release)
-        run: flutter build web --web-renderer canvaskit --release
+      - name: Build web (release - html renderer)
+        run: flutter build web --web-renderer html --release
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
