@@ -4,32 +4,36 @@ on:
   push:
     branches: [master]
 
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.6'
+          flutter-version: '3.22.0'
           channel: 'stable'
           cache: true
+
+      - name: Configure git
+        run: |
+          git config --global user.email "bot@kilo.ai"
+          git config --global user.name "Kilo Bot"
 
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build web (release - html renderer)
+      - name: Build web
         run: flutter build web --web-renderer html --release
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v5
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
           force_orphan: true
+          user_name: Kilo Bot
+          user_email: bot@kilo.ai
