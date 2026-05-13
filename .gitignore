@@ -60,5 +60,4 @@ coverage/
 .test_coverage.json
 
 # Project-specific
-assets/placeholder.png
 !assets/.gitkeep
