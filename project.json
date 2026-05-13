@@ -1,0 +1,7 @@
+{
+  "buildCommand": "flutter build web --web-renderer html --release",
+  "outputDirectory": "build/web",
+  "framework": "custom",
+  "installCommand": "flutter pub get",
+  "repositoryRootDirectory": "."
+}
