@@ -4,8 +4,11 @@ on:
   push:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,19 +21,14 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Configure git
-        run: |
-          git config --global user.email "bot@kilo.ai"
-          git config --global user.name "Kilo Bot"
-
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build web (release)
+      - name: Build web
         run: flutter build web --web-renderer html --release
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
+        uses: amondnet/vercel-action@v30
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
@@ -38,3 +36,5 @@ jobs:
           working-directory: .
           github-comment: false
           scope: keshab1997
+          alias-domains: |
+            ai-scan-solve.vercel.app
