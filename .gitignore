@@ -1,0 +1,64 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.build_log
+
+# iOS
+ios/Flutter/.last_build_id
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# Android
+android/app/src/debug/
+android/app/src/profile/
+android/app/src/main/assets
+android/app/src/main/res/raw
+android/app/src/main/res/xml/
+
+# Web build artifacts
+build/web/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# Hive boxes
+hive_boxes/
+*.lock
+
+# macOS
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Misc
+*.log
+pubspec.lock
+
+# Firebase/CI
+lib/generated_pluginRegistrant.dart
+firebase.json
+.firebaserc
+
+# Test/coverage
+coverage/
+.test_coverage.json
+
+# Project-specific
+assets/placeholder.png
+!assets/.gitkeep
