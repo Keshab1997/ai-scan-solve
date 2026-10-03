@@ -60,4 +60,5 @@ coverage/
 .test_coverage.json
 
 # Project-specific
-!assets/.gitkeep
+!assets/.gitkeep# flutter-builder: see_screen.py downloads screenshots here
+.agent-screens/
